@@ -1,1 +1,97 @@
-<p>projects works!</p>
+<div class="training-container">
+    <!-- <h2>Our Training Services</h2> -->
+  <section>
+    <h2>Our Core Services</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Website Development</h3>
+          <p>Modern, scalable, and responsive websites tailored for your brand and business goals.</p>
+        </div>
+        <div class="feature">
+          <h3>Mobile App Development</h3>
+          <p>Native and cross-platform apps with seamless UX for iOS and Android.</p>
+        </div>
+        <div class="feature">
+          <h3>Custom Software Solutions</h3>
+          <p>From internal tools to client-facing portals, we build software that solves your unique challenges.</p>
+        </div>
+        <div class="feature">
+          <h3>API & Systems Integration</h3>
+          <p>Connect your business systems for automation, analytics, and improved workflows.</p>
+        </div>
+        <div class="feature">
+          <h3>UI/UX Design</h3>
+          <p>Intuitive and engaging interfaces designed to delight users and drive results.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Proposition / Why Us -->
+    <section>
+      <h2>Why Leading Companies Choose Us</h2>
+      <ul style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+        <li>✔️ Dedicated project managers and transparent communication</li>
+        <li>✔️ Agile, collaborative process from ideation to launch</li>
+        <li>✔️ Proven track record with Fortune 500 and fast-growing startups</li>
+        <li>✔️ Flexible engagement models: fixed-price, retainer, or staff augmentation</li>
+        <li>✔️ Post-launch support and optimization</li>
+      </ul>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to start your next project?</h2>
+        <p>See how our team can help you achieve your digital goals.<br>Request a free consultation or live demo today.</p>
+        <button class="btn-main" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">
+          Request a Demo
+        </button>
+      </section>
+  
+      <div class="form-wrapper" id="demo-form">
+        <h2>Send us an enquiry</h2>
+        <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Organization Name</label>
+          <input type="text" formControlName="orgName" />
+        </div>
+  
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" formControlName="email" />
+        </div>
+  
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" formControlName="phone" />
+        </div>
+  
+        <div class="form-group">
+          <label>Required Tech Stack</label>
+          <div formArrayName="reqTechStack">
+            <div *ngFor="let tech of reqTechStack.controls; let i = index">
+              <input [formControlName]="i" placeholder="Technology" />
+              <button type="button" (click)="removeTech(i)" *ngIf="reqTechStack.length > 1">Remove</button>
+            </div>
+          </div>
+          <button type="button" (click)="addTech()">Add Technology</button>
+        </div>
+  
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" formControlName="address" />
+        </div>
+  
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" formControlName="city" />
+        </div>
+  
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="description"></textarea>
+        </div>
+  
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  

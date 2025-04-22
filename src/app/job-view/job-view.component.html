@@ -1,0 +1,47 @@
+<div class="job-detail-container" *ngIf="job; else loading">
+    <div class="job-header">
+      <h2>{{ job.title }}</h2>
+      <div class="job-meta">
+        <p class="department"><strong>Department:</strong> {{ job.department }}</p>
+        <p class="location"><strong>Location:</strong> {{ job.location }}</p>
+        <p class="salary"><strong>Salary Range:</strong> {{ job.salaryRange || 'Not provided' }}</p>
+        <p class="job-type"><strong>Job Type:</strong> {{ job.jobType }}</p>
+        <p class="experience"><strong>Required Experience:</strong> {{ job.requiredExperience }} years</p>
+        <p class="status" [class]="job.status">
+          <strong>Status:</strong> {{ job.status | titlecase }}
+        </p>
+        <p class="posted-date">
+          <strong>Posted Date:</strong> {{ job.postedDate | date:'longDate' }}
+        </p>
+        <p class="last-date">
+          <strong>Last Date to Apply:</strong> {{ job.lastDateToApply | date:'longDate' }}
+        </p>
+      </div>
+    </div>
+  
+    <div class="job-description">
+      <h3>Description</h3>
+      <p>{{ job.description }}</p>
+    </div>
+  
+    <div class="skills-required">
+      <h3>Skills Required</h3>
+      <ul>
+        <li *ngFor="let skill of job.skillsRequired">{{ skill }}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="job-actions">
+
+
+    <!-- <a [routerLink]="['application-form', this.job?.jobId]" class="apply-btn">Apply</a> -->
+    <a [routerLink]="['/application-form', job?.jobId]" class="apply-btn">Apply</a>
+
+
+  </div>
+
+  <ng-template #loading>
+    <div class="loading">Loading job form...</div>
+  </ng-template>
+  

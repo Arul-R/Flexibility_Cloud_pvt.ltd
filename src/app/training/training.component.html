@@ -1,1 +1,111 @@
-<p>training works!</p>
+<div class="training-container">
+  <!-- <h2>Our Training Services</h2> -->
+
+  <section class="hero">
+    <div class="container">
+      <h1>Empowering the Next Generation of Tech Talent</h1>
+      <p>We provide industry-leading trainers to help top tech companies accelerate the onboarding and upskilling of their new hires in today's most in-demand technologies.</p>
+    </div>
+  </section>
+
+  <section id="about" class="container">
+    <h2>Who We Are</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      At TechTrain Pro, we partner with leading technology firms to deliver hands-on, practical training for new recruits. Our team of expert trainers brings real-world experience in the latest tech stacks, ensuring your teams are productive from day one.
+    </p>
+  </section>
+
+  <section id="services" style="background-color: #f8f9fa;">
+    <div class="container">
+      <h2>What We Offer</h2>
+      <div class="features">
+        <div class="feature-card">
+          <h3>Custom Onboarding Bootcamps</h3>
+          <p>Tailored programs for your company's unique tech stack and workflow.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Popular Tech Stack Training</h3>
+          <p>Deep dives into JavaScript, Python, Java, Cloud, DevOps, Data Science, and more.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Blended Learning</h3>
+          <p>In-person, virtual, and hybrid options to suit your needs.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Mentorship & Support</h3>
+          <p>Ongoing guidance to ensure long-term success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-us" class="container">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Expert Trainers</h3>
+        <p>Only seasoned professionals with proven teaching experience.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Industry-Relevant Curriculum</h3>
+        <p>Continuously updated to reflect the latest trends and tools.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Seamless Integration</h3>
+        <p>We work with your HR and engineering teams for a smooth training experience.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Trusted by Leading Companies</h3>
+        <p>Partnered with top tech firms across the industry.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="form-wrapper">
+    <h2>Send us an enquiry</h2>
+    <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Organization Name</label>
+        <input type="text" formControlName="orgName" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" />
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="text" formControlName="phone" />
+      </div>
+
+      <div class="form-group">
+        <label>Required Tech Stack</label>
+        <div formArrayName="reqTechStack">
+          <div *ngFor="let tech of reqTechStack.controls; let i = index">
+            <input [formControlName]="i" placeholder="Technology" />
+            <button type="button" (click)="removeTech(i)" *ngIf="reqTechStack.length > 1">Remove</button>
+          </div>
+        </div>
+        <button type="button" (click)="addTech()">Add Technology</button>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" formControlName="address" />
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" formControlName="city" />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea formControlName="description"></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

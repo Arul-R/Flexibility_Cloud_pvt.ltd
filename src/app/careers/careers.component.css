@@ -1,0 +1,210 @@
+/* Container for the job listings */
+.my-jobs-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: 2em;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Job grid layout */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.job-card {
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Job title styling */
+.job-card h3 {
+  font-size: 1.5em;
+  color: #3498db;
+  margin-bottom: 10px;
+}
+
+.job-card h3 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.job-card p {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #7f8c8d;
+}
+
+/* Job status color */
+.job-status {
+  font-weight: bold;
+  color: #16a085;
+}
+
+/* Job location styling */
+.job-location {
+  font-style: italic;
+}
+
+/* Job actions - Apply button */
+.job-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.apply-btn {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: #2980b9;
+}
+
+/* No jobs available message */
+.no-jobs {
+  text-align: center;
+  font-size: 1.2em;
+  color: #e74c3c;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .my-jobs-container {
+    padding: 15px;
+  }
+  .job-card {
+    padding: 15px;
+  }
+  .apply-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+
+
+
+/* .my-jobs-container {
+    padding: 20px;
+  }
+  .job-status-nav {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  .job-status-nav button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+  }
+  .job-status-nav button.active {
+    color: #0066cc;
+    border-bottom: 2px solid #0066cc;
+  }
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .job-card {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+  }
+  .job-card.open { border-left: 4px solid #cce5ff; }
+  .job-card.submitted { border-left: 4px solid #ffeeba; }
+  .job-card.closed { border-left: 4px solid #d4edda; }
+  .job-card.rejected { border-left: 4px solid #f8d7da; }
+  .job-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  .job-card h3 a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .job-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  .job-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  .job-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .job-actions a, .job-actions button {
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  .apply-btn {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  .edit-btn {
+    background-color: #e7f5ff;
+    color: #1971c2;
+  }
+  .submit-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .no-jobs {
+    text-align: center;
+    padding: 50px 0;
+  }
+  .new-job {
+    margin-top: 30px;
+    text-align: right;
+  }
+  .create-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+   */

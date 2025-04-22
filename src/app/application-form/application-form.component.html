@@ -1,1 +1,73 @@
-<p>application-form works!</p>
+<!-- applicant-form.component.html -->
+<div class="applicant-form-container">
+    <h2>{{ isEditMode ? 'Edit Applicant' : 'Submit New Applicant' }}</h2>
+  
+    <form [formGroup] = "applicantForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" formControlName="firstName" type="text" placeholder="Enter first name" />
+        <div class="error" *ngIf="applicantForm.get('firstName')?.invalid && applicantForm.get('firstName')?.touched">
+          First name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" formControlName="lastName" type="text" placeholder="Enter last name" />
+        <div class="error" *ngIf="applicantForm.get('lastName')?.invalid && applicantForm.get('lastName')?.touched">
+          Last name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" placeholder="Enter email" />
+        <div class="error" *ngIf="applicantForm.get('email')?.invalid && applicantForm.get('email')?.touched">
+          Valid email is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" formControlName="phone" type="text" placeholder="Enter phone number" />
+      </div>
+  
+      <div class="form-group">
+        <label>Tech Stack</label>
+        <div formArrayName="techStack">
+          <div *ngFor="let tech of techStack.controls; let i = index" class="techStack-input">
+            <input [formControlName]="i" type="text" placeholder="Tech" />
+            <button type="button" (click)="removeTechStack(i)" *ngIf="techStack.length > 1">Remove</button>
+          </div>
+        </div>
+        <button type="button" (click)="addTechStack()">Add Tech</button>
+      </div>
+  
+      <div class="form-group">
+        <label for="yearsOfExperience">Years of Experience</label>
+        <input id="yearsOfExperience" formControlName="yearsOfExperience" type="number" />
+      </div>
+  
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" formControlName="address" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label for="city">City</label>
+        <input id="city" formControlName="city" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label for="resume">Resume</label>
+        <input id="resume" type="file" accept=".pdf" (change)="onFileSelected($event)" />
+      </div>
+  
+      <div class="form-actions">
+        <!-- <button type="submit" [disabled]="applicantForm.invalid">{{ isEditMode ? 'Update' : 'Submit' }}</button> -->
+        <button type="submit">Submit</button>
+
+      </div>
+    </form>
+  </div>
+  

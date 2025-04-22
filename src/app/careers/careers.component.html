@@ -1,1 +1,55 @@
-<p>careers works!</p>
+<div class="my-jobs-container">
+  <h2>My Jobs</h2>
+
+  <div class="jobs-grid" *ngIf="jobs.length > 0; else noJobs">
+    <div class="job-card" *ngFor="let job of jobs">
+      <h3><a [routerLink]="['/jobs', job.jobId]">{{ job.title }}</a></h3>
+      <p class="job-status">{{ job.status | titlecase }}</p>
+      <p class="job-location">{{ job.location }}</p>
+
+      <div class="job-actions">
+        <a [routerLink]="['/job-view', job.jobId]" class="apply-btn">Apply</a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noJobs>
+    <div class="no-jobs">
+      <p>No jobs available at the moment.</p>
+    </div>
+  </ng-template>
+</div>
+
+
+
+
+
+<!-- <div class="my-jobs-container">
+    <h2>My Jobs</h2>
+    
+    <div class="jobs-grid" *ngIf="jobs.length > 0; else noJobs">
+      <div class="job-card" *ngFor="let job of jobs">
+        <h3><a [routerLink]="['/jobs', job.jobId]">{{ job.title }}</a></h3>
+        <p class="job-status">{{ job.status | titlecase }}</p>
+        <p class="job-location">{{ job.location }}</p>
+
+
+
+        <div class="job-actions">
+
+          <a [routerLink]="['/job-view', job.jobId]" class="apply-btn">Apply</a>
+          <router-outlet></router-outlet>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  
+    <ng-template #noJobs>
+      <div class="no-jobs">
+        <p>No jobs available at the moment.</p>
+      </div>
+    </ng-template>
+   -->
