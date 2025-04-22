@@ -1,0 +1,37 @@
+<div class="p-4">
+    <h2 class="text-xl font-bold mb-4">Applicants</h2>
+  
+    <input
+      type="text"
+      placeholder="Search applicants..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      class="border p-2 w-full mb-4"
+    />
+  
+    <table class="w-full border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-2 text-left">Name</th>
+          <th class="p-2 text-left">Email</th>
+          <th class="p-2 text-left">Phone</th>
+          <th class="p-2 text-left">City</th>
+          <th class="p-2 text-left">Status</th>
+          <th class="p-2 text-left">JobId</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let applicant of filteredApplicants">
+          <td class="p-2">{{ applicant.firstName }} {{ applicant.lastName }}</td>
+          <td class="p-2">{{ applicant.email }}</td>
+          <td class="p-2">{{ applicant.phone }}</td>
+          <td class="p-2">{{ applicant.city }}</td>
+          <td class="p-2">{{ applicant.status }}</td>
+          <td class="p-2">{{ applicant.appliedJobId}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
