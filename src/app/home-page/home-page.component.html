@@ -1,1 +1,149 @@
-<p>home-page works!</p>
+<!-- home-page.component.html -->
+<!-- Video Background -->
+<video autoplay muted loop class="video-bg">
+  <source src="vecteezy_white-abstract-background_1807936.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- NAVBAR -->
+<div class="main-content">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Company Logo">
+    </div>
+    
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li class="dropdown">
+        <a href="#">Services</a>
+        <ul class="dropdown-content">
+          <li><a routerLink="/projects">Projects</a></li>
+          <li><a routerLink="/training">Training</a></li>
+        </ul>
+      </li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a routerLink="/careers">Careers</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <div class="heading">
+    <h1>Flexibility Cloud Services</h1>
+    <p>Empowering businesses with scalable cloud solutions</p>
+  </div>
+ <!-- About Section Overlay -->
+ <div class="overlay" id="about-video">
+  <header>
+      <h2>About</h2>
+  </header>
+
+  <section>
+      <p>Flexibility Cloud Services is a forward-thinking IT services provider delivering scalable cloud solutions and end-to-end technology support. Our mission is to simplify digital transformation for organizations of all sizes through tailored IT strategies and professional services.</p>
+      <p>We specialize in robust cloud infrastructure, system integration, and IT consulting that scales with your business. Additionally, we collaborate with companies to train fresh graduates and junior professionals across various technical domains, ensuring they are job-ready from day one.</p>
+      <p>Flexibility Cloud Services also provides project support and execution, stepping in to assist or fully complete business-critical projects for partner companies. Our strengths include industry-leading expertise, customized workforce training programs, dedication to security and scalability, and a commitment to excellence through proactive support.</p>
+      <p>Our mission is to empower businesses and individuals with flexible, high-impact technology solutions, bridging the gap between potential and performance.</p>
+  </section>
+</div>
+
+
+  <!-- News Section -->
+  <div class="overlay" id="about-video">
+    <section id="news" class="section">
+      <header>
+        <h2>Latest News & Updates</h2>
+      </header>
+      <div class="ticker">
+        <p>🚀 Flexibility Cloud launches new AI-based training modules | 📢 Now offering end-to-end project execution...</p>
+      </div>
+      <div class="news-item">
+        <h2>Flexibility Cloud Expands AI Training</h2>
+        <p>We're excited to announce the launch of new AI and ML training programs...</p>
+      </div>
+      <div class="news-item">
+        <h2>Enterprise Project Support Now Live</h2>
+        <p>Our professional services division is now taking on full-scale project execution roles...</p>
+      </div>
+      <div class="news-item">
+        <h2>May Training Batch Open</h2>
+        <p>Registrations are open for the May training cohort...</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Feedback Section -->
+  <div class="overlay" id="about-video">
+    <section id="feedback" style="position: relative; height: 100vh; overflow: hidden;">
+      <div class="background"></div>
+      <div class="cloud1"></div>
+      <div class="cloud2"></div>
+      <div class="cloud3"></div>
+
+      <div class="content">
+        <h2>Feedback Form</h2>
+        <form id="feedback-form">
+          
+          <input type="text" [(ngModel)]="feedback.name" name="name" placeholder="Your Name" required />
+<input type="email" [(ngModel)]="feedback.email" name="email" placeholder="Your Email" required />
+<textarea [(ngModel)]="feedback.message" name="message" placeholder="Your Feedback" required></textarea>
+
+
+
+          <!-- Reversed Star Rating -->
+          <div class="stars">
+            <div class="stars">
+              <input type="radio" [(ngModel)]="feedback.rating" name="rating" [value]="5" id="star5" /><label for="star5">&#9733;</label>
+              <input type="radio" [(ngModel)]="feedback.rating" name="rating" [value]="4" id="star4" /><label for="star4">&#9733;</label>
+              <input type="radio" [(ngModel)]="feedback.rating" name="rating" [value]="3" id="star3" /><label for="star3">&#9733;</label>
+              <input type="radio" [(ngModel)]="feedback.rating" name="rating" [value]="2" id="star2" /><label for="star2">&#9733;</label>
+              <input type="radio" [(ngModel)]="feedback.rating" name="rating" [value]="1" id="star1" /><label for="star1">&#9733;</label>
+            </div>
+            
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Thanks Popup -->
+      <div class="popup" *ngIf="showPopup">
+        <h3>Thanks for your feedback!</h3>
+      </div>
+      
+    </section>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Contact Information</h3>
+      <p><strong>Address:</strong> Plot -12, Ground Floor -1...</p>
+      <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+      <p><strong>Email:</strong> ratetrainersharath123gmail.com</p>
+      <p><strong>Working Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <p><a href="#">Home</a></p>
+      <p><a href="#">About Us</a></p>
+      <p><a href="#">Services</a></p>
+      <p><a href="#">Training</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 30px; font-size: 14px; color: #ccc;">&copy; 2025 Flexibility Cloud Services. All rights reserved.</p>
+</footer>
+
+
+
+

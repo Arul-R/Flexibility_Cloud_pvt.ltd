@@ -6,8 +6,10 @@ import { ApplicantFormComponent } from './application-form/application-form.comp
 import { TrainingComponent } from './training/training.component';
 import { ProjectComponent } from './projects/projects.component';
 import { ViewApplicantsComponent } from './view-applications/view-applications.component';
+import { HomepageComponent } from './home-page/home-page.component';
 
 export const routes: Routes = [
+  { path: '',component: HomepageComponent},
   { path: 'careers', component: MyJobsComponent },  // Route for MyJobsComponent
   { path: 'job-view/:id', component: JobViewComponent },  // Route for JobViewComponent with parameter
   { path: 'application-form/:id', component: ApplicantFormComponent},
