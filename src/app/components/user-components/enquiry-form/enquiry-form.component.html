@@ -1,0 +1,143 @@
+<!-- enquiry-form.component.html -->
+<div class="form-container">
+  <h2>Enquiry Form</h2>
+  
+  <div *ngIf="success" class="alert alert-success">
+    Enquiry submitted successfully!
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+  <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="orgName">Organization Name*</label>
+      <input
+        type="text"
+        id="orgName"
+        formControlName="orgName"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['orgName'].errors }"
+      />
+      <div *ngIf="submitted && f['orgName'].errors" class="invalid-feedback">
+        <div *ngIf="f['orgName'].errors['required']">Organization name is required</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+      />
+      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="f['email'].errors['required']">Email is required</div>
+        <div *ngIf="f['email'].errors['email']">Please enter a valid email address</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">Phone (10 digits)*</label>
+      <input
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['phone'].errors }"
+      />
+      <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+        <div *ngIf="f['phone'].errors['required']">Phone number is required</div>
+        <div *ngIf="f['phone'].errors['pattern']">Please enter a valid 10-digit phone number</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="reqTechStack">Required Tech Stack* (comma separated)</label>
+      <input
+        type="text"
+        id="reqTechStack"
+        formControlName="reqTechStack"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['reqTechStack'].errors }"
+        placeholder="Angular, Node.js, MongoDB"
+      />
+      <div *ngIf="submitted && f['reqTechStack'].errors" class="invalid-feedback">
+        <div *ngIf="f['reqTechStack'].errors['required']">Tech stack is required</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="address">Address</label>
+      <textarea
+        id="address"
+        formControlName="address"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City*</label>
+      <input
+        type="text"
+        id="city"
+        formControlName="city"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['city'].errors }"
+      />
+      <div *ngIf="submitted && f['city'].errors" class="invalid-feedback">
+        <div *ngIf="f['city'].errors['required']">City is required</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Project/Training Description*</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"
+      ></textarea>
+      <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+        <div *ngIf="f['description'].errors['required']">Description is required</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" autocomplete="on">Submit</button>
+      <button type="reset" class="btn btn-secondary" (click)="submitted = false">Reset</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<!-- <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" formControlName="name" />
+  
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+  
+    <label>Phone:</label>
+    <input type="text" formControlName="phone" />
+  
+    <label>Service Interested:</label>
+    <input type="text" formControlName="serviceInterested" />
+  
+    <label>Required Tech Stack:</label>
+    <div *ngFor="let tech of reqTechStack.controls; let i = index">
+      <input [formControlName]="i" placeholder="Technology" />
+      <button type="button" (click)="removeTech(i)" *ngIf="reqTechStack.length > 1">Remove</button>
+    </div>
+  
+    <button type="button" (click)="addTech()">Add Technology</button>
+  
+    <button type="submit">Submit</button>
+  </form>
+   -->

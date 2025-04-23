@@ -41,12 +41,13 @@
     <section class="cta-section">
         <h2>Ready to start your next project?</h2>
         <p>See how our team can help you achieve your digital goals.<br>Request a free consultation or live demo today.</p>
-        <button class="btn-main" onclick="document.getElementById('demo-form').scrollIntoView({behavior:'smooth'})">
-          Request a Demo
-        </button>
+        
+        <a [routerLink]="['/enquiry-form', 'Project']" class="apply-btn">Request a demo</a>
+
+        
       </section>
   
-      <div class="form-wrapper" id="demo-form">
+      <!-- <div class="form-wrapper" id="demo-form">
         <h2>Send us an enquiry</h2>
         <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -92,6 +93,6 @@
   
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </div> -->
   </div>
   

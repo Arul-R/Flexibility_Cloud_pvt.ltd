@@ -14,6 +14,11 @@
   margin-bottom: 1rem;
 }
 
+/* .training-container.apply-btn{
+  text-align: center;
+  margin-bottom: 1rem;
+} */
+
 .training-container h3 {
   text-align: center;
 }
@@ -87,6 +92,14 @@ section h2 {
   color: #2d3748;
 }
 
+/* section .apply-btn{
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  color: #2d3748;
+  align-items: center;
+} */
+
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -134,4 +147,13 @@ section h2 {
 .courses-table th {
   background-color: #f8f9fa;
   font-weight: 600;
+}
+
+.apply-btn {
+  text-align: center;       /* Align text like h2 */
+  margin-bottom: 40px;      /* Match 'section h2' margin-bottom */
+  font-size: 2rem;          /* Match 'section h2' font-size */
+  color: #2d3748;           /* Match 'section h2' color */
+  text-decoration: none;    /* Remove underline for anchor */
+  display: block;           /* Anchor behaves like a block element */
 }

@@ -70,8 +70,12 @@
     max-width: 700px;
     margin: 0 auto 1.5rem;
   }
+
+  .cta-section h2 {
+    color: white;
+  }
   
-  .btn-main {
+  .apply-btn {
     background-color: #f7c948;
     color: #1a2b7a;
     padding: 0.75rem 1.5rem;
@@ -81,7 +85,7 @@
     cursor: pointer;
   }
   
-  .btn-main:hover {
+  .apply-btn:hover {
     background-color: #f0b429;
   }
   

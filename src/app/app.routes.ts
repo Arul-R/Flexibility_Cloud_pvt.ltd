@@ -7,6 +7,7 @@ import { ApplicantFormComponent } from './components/user-components/application
 import { TrainingComponent } from './components/user-components/training/training.component';
 import { ProjectComponent } from './components/user-components/projects/projects.component';
 import { ViewApplicantsComponent } from './components/admin-components/view-applications/view-applications.component';
+import { EnquiryFormComponent } from './components/user-components/enquiry-form/enquiry-form.component';
 
 export const routes: Routes = [
   { path: '',component: HomepageComponent},
@@ -16,7 +17,9 @@ export const routes: Routes = [
   {path: 'application-form', component: ApplicantFormComponent},
   { path: 'training', component: TrainingComponent },
   { path: 'projects', component: ProjectComponent},
-  { path: 'admin/applicants', component: ViewApplicantsComponent}
+  { path: 'admin/applicants', component: ViewApplicantsComponent},
+  { path: 'admin/enquiries', component: EnquiryFormComponent },
+  { path: 'enquiry-form/:service', component: EnquiryFormComponent}
 
 ];
 

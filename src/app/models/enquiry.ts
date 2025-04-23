@@ -1,5 +1,5 @@
 export interface Enquiry {
-    id?: string;
+    _id?: string;
     service?: 'Training' | 'Project';
     orgName: string;
     email: string;
