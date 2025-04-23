@@ -19,19 +19,19 @@ export class ViewEnquiryComponent implements OnInit {
   constructor(private enquiryService: EnquiryService) {}
 
   ngOnInit(): void {
-    this.enquiryService.getEnquiries().subscribe((data) => {
+    this.enquiryService.getEnquirys().subscribe((data) => {
       this.enquirys = data;
       this.filteredEnquirys = data;
     });
   }
 
-  onSearch(): void {
-    if (this.searchQuery.trim()) {
-      this.enquiryService
-        .searchEnquirys(this.searchQuery)
-        .subscribe((results) => (this.filteredEnquirys = results));
-    } else {
-      this.filteredEnquirys = this.enquirys;
-    }
-  }
+  // onSearch(): void {
+  //   if (this.searchQuery.trim()) {
+  //     this.enquiryService
+  //       .searchEnquirys(this.searchQuery)
+  //       .subscribe((results) => (this.filteredEnquirys = results));
+  //   } else {
+  //     this.filteredEnquirys = this.enquirys;
+  //   }
+  // }
 }

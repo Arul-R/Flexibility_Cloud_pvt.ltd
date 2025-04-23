@@ -8,6 +8,9 @@ import { Enquiry } from '../models/enquiry';
   providedIn: 'root'
 })
 export class EnquiryService {
+  searchEnquirys(searchQuery: string) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:3000/api/enquiries';
 
   constructor(private http: HttpClient) { }

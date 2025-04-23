@@ -8,6 +8,7 @@ import { TrainingComponent } from './components/user-components/training/trainin
 import { ProjectComponent } from './components/user-components/projects/projects.component';
 import { ViewApplicantsComponent } from './components/admin-components/view-applications/view-applications.component';
 import { EnquiryFormComponent } from './components/user-components/enquiry-form/enquiry-form.component';
+import { ViewEnquiryComponent } from './components/admin-components/view-enquiries/view-enquiries.component';
 
 export const routes: Routes = [
   { path: '',component: HomepageComponent},
@@ -18,7 +19,7 @@ export const routes: Routes = [
   { path: 'training', component: TrainingComponent },
   { path: 'projects', component: ProjectComponent},
   { path: 'admin/applicants', component: ViewApplicantsComponent},
-  { path: 'admin/enquiries', component: EnquiryFormComponent },
+  { path: 'admin/enquiries', component: ViewEnquiryComponent },
   { path: 'enquiry-form/:service', component: EnquiryFormComponent}
 
 ];
