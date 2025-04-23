@@ -1,7 +1,7 @@
 <!-- home-page.component.html -->
 <!-- Video Background -->
 <video autoplay muted loop class="video-bg">
-  <source src="vecteezy_white-abstract-background_1807936.mp4" type="video/mp4">
+  <source src="https://i.imgur.com/bXQEsIU.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -9,7 +9,7 @@
 <div class="main-content">
   <nav class="navbar">
     <div class="logo">
-      <img src="assets/logo.png" alt="Company Logo">
+      <img src="https://i.imgur.com/MNusOJB.png" alt="Company Logo">
     </div>
     
 
@@ -18,9 +18,10 @@
       <li class="dropdown">
         <a href="#">Services</a>
         <ul class="dropdown-content">
-          <li><a routerLink="/projects">Projects</a></li>
-          <li><a routerLink="/training">Training</a></li>
+          <li><a [routerLink]="['/projects']">Projects</a></li>
+          <li><a [routerLink]="['/training']">Training</a></li>
         </ul>
+        
       </li>
       <li><a href="#news">News</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -29,17 +30,18 @@
     </ul>
   </nav>
 
-  <div class="heading">
-    <h1>Flexibility Cloud Services</h1>
-    <p>Empowering businesses with scalable cloud solutions</p>
-  </div>
+  <header class="site-header" >
+    <div class="header-content">
+      <h1 class="main-title">FLEXIBILITY CLOUD SERVICES</h1>
+      <p class="tagline">We Make Tech as Flexible as You Need.</p>
+    </div>
+  </header>
  <!-- About Section Overlay -->
- <div class="overlay" id="about-video">
+ <div class="overlay" id="about-video" >
+  <section id="about" class="section">
   <header>
       <h2>About</h2>
   </header>
-
-  <section>
       <p>Flexibility Cloud Services is a forward-thinking IT services provider delivering scalable cloud solutions and end-to-end technology support. Our mission is to simplify digital transformation for organizations of all sizes through tailored IT strategies and professional services.</p>
       <p>We specialize in robust cloud infrastructure, system integration, and IT consulting that scales with your business. Additionally, we collaborate with companies to train fresh graduates and junior professionals across various technical domains, ensuring they are job-ready from day one.</p>
       <p>Flexibility Cloud Services also provides project support and execution, stepping in to assist or fully complete business-critical projects for partner companies. Our strengths include industry-leading expertise, customized workforce training programs, dedication to security and scalability, and a commitment to excellence through proactive support.</p>
@@ -49,7 +51,7 @@
 
 
   <!-- News Section -->
-  <div class="overlay" id="about-video">
+  <div class="overlay" id="about-news">
     <section id="news" class="section">
       <header>
         <h2>Latest News & Updates</h2>
@@ -73,7 +75,7 @@
   </div>
 
   <!-- Feedback Section -->
-  <div class="overlay" id="about-video">
+  <div class="overlay" id="about-feedback">
     <section id="feedback" style="position: relative; height: 100vh; overflow: hidden;">
       <div class="background"></div>
       <div class="cloud1"></div>
@@ -117,13 +119,15 @@
 
 <!-- Footer Section -->
 <footer>
+  <section id="contact">
   <div class="footer-content">
     <div class="footer-section">
       <h3>Contact Information</h3>
-      <p><strong>Address:</strong> Plot -12, Ground Floor -1...</p>
-      <p><strong>Phone:</strong> +1 (123) 456-7890</p>
-      <p><strong>Email:</strong> ratetrainersharath123gmail.com</p>
-      <p><strong>Working Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM</p>
+      <p class="white-text"><strong>Address:</strong> Plot -12, Ground Floor -1...</p>
+      <p class="white-text"><strong>Address:</strong> Plot -12, Ground Floor -1...</p>
+      <p class="white-text"><strong>Phone:</strong> +1 (123) 456-7890</p>
+      <p class="white-text"><strong>Email:</strong> ratetrainersharath123gmail.com</p>
+      <p class="white-text"><strong>Working Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM</p>
     </div>
     <div class="footer-section">
       <h3>Quick Links</h3>
@@ -141,6 +145,8 @@
       </div>
     </div>
   </div>
+</section>
+
   <p style="margin-top: 30px; font-size: 14px; color: #ccc;">&copy; 2025 Flexibility Cloud Services. All rights reserved.</p>
 </footer>
 

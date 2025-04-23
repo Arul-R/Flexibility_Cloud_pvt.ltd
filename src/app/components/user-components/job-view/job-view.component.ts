@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { JobService } from '../services/jobService';
-import { Job } from '../models/jobs';
-
+import { Job } from '../../../models/jobs';
+import { JobService } from '../../../services/jobService';
 @Component({
   selector: 'job-view',
   standalone: true,

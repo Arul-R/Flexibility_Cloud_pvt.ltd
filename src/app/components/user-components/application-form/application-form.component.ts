@@ -9,9 +9,8 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicantService } from '../services/applicantService';
-import { Applicant } from '../models/applicant';
-
+import { ApplicantService } from '../../../services/applicantService';
+import { Applicant } from '../../../models/applicant';
 @Component({
   selector: 'app-applicant-form',
   standalone: true,
@@ -31,20 +30,7 @@ export class ApplicantFormComponent implements OnInit {
     private applicantService: ApplicantService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.appliedJobId = this.route.snapshot.paramMap.get('id') || '';
 
-  //   this.applicantForm = this.fb.group({
-  //     firstName: ['', Validators.required],
-  //     lastName: ['', Validators.required],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     phone: [''],
-  //     techStack: this.fb.array([this.fb.control('')]),
-  //     yearsOfExperience: [''],
-  //     address: [''],
-  //     city: ['']
-  //   });
-  // }
 
   ngOnInit(): void {
     this.appliedJobId = this.route.snapshot.paramMap.get('id') || '';

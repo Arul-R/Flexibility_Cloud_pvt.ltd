@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // Model for feedback (you can define it in another file if preferred)
 class Feedback {
@@ -21,7 +22,7 @@ class Feedback {
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })

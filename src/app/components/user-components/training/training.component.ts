@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { EnquiryService } from '../services/enquiryService';
-import { Enquiry } from '../models/enquiry';
+import { EnquiryService } from '../../../services/enquiryService';
+import { Enquiry } from '../../../models/enquiry';
 
 
 @Component({
-  selector: 'app-project',
+  selector: 'app-training',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  templateUrl: './training.component.html',
+  styleUrls: ['./training.component.css']
 })
-export class ProjectComponent {
+export class TrainingComponent {
   enquiryForm: FormGroup;
 
   constructor(
@@ -20,7 +20,7 @@ export class ProjectComponent {
     private enquiryService: EnquiryService
   ) {
     this.enquiryForm = this.fb.group({
-      service: ['Project'],
+      service: ['Training'],
       orgName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
@@ -50,7 +50,7 @@ export class ProjectComponent {
       const enquiry: Enquiry = this.enquiryForm.value;
       this.enquiryService.addEnquiry(enquiry);
       alert('Enquiry submitted!');
-      this.enquiryForm.reset({ service: 'Project' });
+      this.enquiryForm.reset({ service: 'Training' });
       this.reqTechStack.clear();
       this.addTech(); // Ensure one tech field remains
     } else {

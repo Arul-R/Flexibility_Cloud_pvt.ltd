@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Applicant } from '../models/applicant';
-import { ApplicantService } from '../services/applicantService';
+import { Applicant } from '../../../models/applicant';
+import { ApplicantService } from '../../../services/applicantService';
 
 @Component({
   selector: 'app-view-applicants',

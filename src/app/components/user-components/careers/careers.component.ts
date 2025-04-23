@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Job } from '../models/jobs';
-import { JobService } from '../services/jobService';
 
 import { RouterModule } from '@angular/router';
+import { Job } from '../../../models/jobs';
+import { JobService } from '../../../services/jobService';
 
 @Component({
   selector: 'app-my-jobs',
