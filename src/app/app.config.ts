@@ -7,19 +7,20 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withFetch(), withInterceptorsFromDi())
+    provideHttpClient()
   ]
 };
 
 
+
+
+
+// // src/app/app.config.ts
 // import { ApplicationConfig } from '@angular/core';
-// import { provideRouter } from '@angular/router';
-// import { provideHttpClient } from '@angular/common/http'; // ✅ Keep this
-// import { routes } from './app.routes';
+// import { provideHttpClient } from '@angular/common/http';
 
 // export const appConfig: ApplicationConfig = {
 //   providers: [
-//     provideRouter(routes),
-//     provideHttpClient() // ✅ Make sure this line is here
+//     provideHttpClient()
 //   ]
 // };

@@ -1,0 +1,32 @@
+<div class="login-container">
+    <h2>Admin Login</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="Enter your email"
+      />
+      <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+        Valid email is required.
+      </div>
+  
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="Enter your password"
+      />
+      <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+        Password is required.
+      </div>
+  
+      <button type="submit">Login</button>
+  
+      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </form>
+  </div>
+  

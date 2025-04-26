@@ -12,9 +12,3 @@ export interface Applicant {
     status?: 'submitted' | 'rejected' | 'accepted';
     resume?: File;
 }
-
-
-
-
-// abstract: string;
-// description: string;

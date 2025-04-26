@@ -1,16 +1,16 @@
-// client/src/app/components/enquiry-form/enquiry-form.component.ts
+// src/app/components/enquiry-form/enquiry-form.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EnquiryService } from '../../../services/enquiryService';
-import { Enquiry } from '../../../models/enquiry';
+import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+import { EnquiryService } from '../../../services/enquiryService';
 
 @Component({
   selector: 'app-enquiry-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './enquiry-form.component.html' ,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  templateUrl: './enquiry-form.component.html',
   styleUrls: ['./enquiry-form.component.css']
 })
 export class EnquiryFormComponent {
@@ -19,108 +19,133 @@ export class EnquiryFormComponent {
   success = false;
   errorMessage = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private enquiryService: EnquiryService
-  ) {
-    this.enquiryForm = this.formBuilder.group({
-      // firstName: ['', [Validators.required]],
-      // lastName: ['', [Validators.required]],
-      // email: ['', [Validators.required, Validators.email]],
-      // phone: ['', [Validators.pattern(/^\d{10}$/)]],
-      // address: ['']
-
-
-
-      service: ['Training'], // Default value for optional field
-      orgName: ['', [Validators.required]],
+  constructor(private fb: FormBuilder, private enquiryService: EnquiryService) {
+    this.enquiryForm = this.fb.group({
+      service: ['Training', Validators.required],
+      orgName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      reqTechStack: [[''], [Validators.required]]
-
+      reqTechStack: ['', Validators.required],
+      address: [''],
+      city: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 
+  // Convenience getter for easy access to form fields
+  get f() { return this.enquiryForm.controls; }
 
-  
-  // Getter for easy access to form fields
-  get f() {
-    return this.enquiryForm.controls;
-  }
-
-  onSubmit(): void {
+  onSubmit() {
     this.submitted = true;
     this.success = false;
     this.errorMessage = '';
-    
-    // Stop if form is invalid
+
     if (this.enquiryForm.invalid) {
       return;
     }
 
-    const enquiryData: Enquiry = { ...this.enquiryForm.value };
+    // Convert comma-separated tech stack to array
+    const formValue = {
+      ...this.enquiryForm.value,
+      reqTechStack: this.enquiryForm.value.reqTechStack
+        .split(',')
+        .map((tech: string) => tech.trim())
+        .filter((tech: string) => tech.length > 0)
+    };
 
-    
-    console.log('Submitting enquiry data:', enquiryData);  // Debug log
-
-    this.enquiryService.createEnquiry(enquiryData).subscribe({
-      next: (response) => {
+    this.enquiryService.submitEnquiry(formValue).subscribe({
+      next: () => {
         this.success = true;
+        this.enquiryForm.reset({
+          service: 'Training'
+        });
         this.submitted = false;
-        this.enquiryForm.reset();
-        console.log('Enquiry created successfully', response);
       },
-      error: (error) => {
-        this.errorMessage = error.message || 'An error occurred while submitting the form.';
-        console.error('Error creating enquiry:', error);
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'An error occurred while submitting the enquiry.';
       }
     });
   }
 }
 
-// import { Component, inject } from '@angular/core';
-// import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
-// import { NgIf, NgFor } from '@angular/common';
 
+
+
+
+// // src/app/components/enquiry-form/enquiry-form.component.ts
+// import { Component } from '@angular/core';
+// import { CommonModule } from '@angular/common';
+// import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
+
+// import { HttpClientModule } from '@angular/common/http';
+// import { EnquiryService } from '../../../services/enquiryService';
+// import { Enquiry } from '../../../models/enquiry';
 // @Component({
 //   selector: 'app-enquiry-form',
 //   standalone: true,
-//   imports: [CommonModule, ReactiveFormsModule, NgIf, NgFor],
+//   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
 //   templateUrl: './enquiry-form.component.html',
-//   styleUrl: './enquiry-form.component.css',
+//   styleUrls: ['./enquiry-form.component.css']
 // })
 // export class EnquiryFormComponent {
-//   private fb = inject(FormBuilder);
+//   enquiryForm: FormGroup;
+//   techStackOptions: string[] = ['React', 'Angular', 'Vue', 'Node.js', 'TypeScript', 'JavaScript', 'AWS', 'Azure', 'Python', 'Java'];
+//   submitted = false;
+//   success = false;
+//   error = '';
 
-//   enquiryForm: FormGroup = this.fb.group({
-//     name: ['', Validators.required],
-//     email: ['', [Validators.required, Validators.email]],
-//     phone: ['', Validators.required],
-//     serviceInterested: ['', Validators.required],
-//     reqTechStack: this.fb.array([this.fb.control('')])
-//   });
-
-//   get reqTechStack(): FormArray {
-//     return this.enquiryForm.get('reqTechStack') as FormArray;
+//   constructor(private fb: FormBuilder, private enquiryService: EnquiryService) {
+//     this.enquiryForm = this.fb.group({
+//       service: ['Training', Validators.required],
+//       orgName: ['', Validators.required],
+//       email: ['', [Validators.required, Validators.email]],
+//       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+//       reqTechStack: this.fb.array([], Validators.required),
+//       address: ['', Validators.required],
+//       city: ['', Validators.required],
+//       description: ['', Validators.required]
+//     });
 //   }
 
-//   addTech(): void {
-//     this.reqTechStack.push(this.fb.control(''));
+//   get techStackControls() {
+//     return (this.enquiryForm.get('reqTechStack') as FormArray).controls;
 //   }
 
-//   removeTech(index: number): void {
-//     if (this.reqTechStack.length > 1) {
-//       this.reqTechStack.removeAt(index);
+//   onTechStackChange(tech: string, isChecked: boolean) {
+//     const techStackArray = this.enquiryForm.get('reqTechStack') as FormArray;
+
+//     if (isChecked) {
+//       techStackArray.push(this.fb.control(tech));
+//     } else {
+//       const index = techStackArray.controls.findIndex(x => x.value === tech);
+//       techStackArray.removeAt(index);
 //     }
 //   }
 
-//   onSubmit(): void {
-//     if (this.enquiryForm.valid) {
-//       console.log('Form submitted:', this.enquiryForm.value);
+//   onSubmit() {
+//     this.submitted = true;
+//     this.success = false;
+//     this.error = '';
+
+//     if (this.enquiryForm.invalid) {
+//       return;
 //     }
+
+//     const enquiryData: Enquiry = this.enquiryForm.value;
+    
+//     this.enquiryService.submitEnquiry(enquiryData).subscribe({
+//       next: () => {
+//         this.success = true;
+//         this.enquiryForm.reset({
+//           service: 'Training',
+//           reqTechStack: []
+//         });
+//         this.submitted = false;
+//       },
+//       error: (err) => {
+//         this.error = err.error?.message || 'An error occurred while submitting the enquiry.';
+//       }
+//     });
 //   }
 // }
+

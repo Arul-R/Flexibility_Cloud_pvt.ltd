@@ -9,19 +9,30 @@ import { ProjectComponent } from './components/user-components/projects/projects
 import { ViewApplicantsComponent } from './components/admin-components/view-applications/view-applications.component';
 import { EnquiryFormComponent } from './components/user-components/enquiry-form/enquiry-form.component';
 import { ViewEnquiryComponent } from './components/admin-components/view-enquiries/view-enquiries.component';
+import { AdminAuthGuard } from './admin-auth.guard';
+import { AdminSignupComponent } from './components/admin-components/admin-signup/admin-signup.component';
+import { AdminLoginComponent } from './components/admin-components/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './components/admin-components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   { path: '',component: HomepageComponent},
   { path: 'careers', component: MyJobsComponent },  // Route for MyJobsComponent
   { path: 'job-view/:id', component: JobViewComponent },  // Route for JobViewComponent with parameter
   { path: 'application-form/:id', component: ApplicantFormComponent},
-  {path: 'application-form', component: ApplicantFormComponent},
+  { path: 'application-form', component: ApplicantFormComponent},
   { path: 'training', component: TrainingComponent },
   { path: 'projects', component: ProjectComponent},
-  { path: 'admin/applicants', component: ViewApplicantsComponent},
-  { path: 'admin/enquiries', component: ViewEnquiryComponent },
-  { path: 'enquiry-form/:service', component: EnquiryFormComponent}
 
+  { path: 'admin/applicants', component: ViewApplicantsComponent},
+  { path: 'admin/enquiries', component: ViewEnquiryComponent},
+  { path: 'enquiry-form/:service', component: EnquiryFormComponent},
+  { path: 'enquiry-form', component: EnquiryFormComponent},
+
+
+  { path: 'admin-login', component: AdminLoginComponent },
+  { path: 'admin-signup', component: AdminSignupComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminAuthGuard]
+  }
 ];
 
 @NgModule({

@@ -1,57 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  Validators,
-  ReactiveFormsModule
-} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ApplicantService } from '../../../services/applicantService';
-import { Applicant } from '../../../models/applicant';
+
 @Component({
   selector: 'app-applicant-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './application-form.component.html',
   styleUrls: ['./application-form.component.css']
 })
 export class ApplicantFormComponent implements OnInit {
-  applicantForm!: FormGroup;
-  isEditMode: boolean = false;
+  applicantForm: FormGroup;
+  isEditMode = false;
   selectedFile: File | null = null;
-  appliedJobId: string = '';
+  submitted = false;
+  successMessage = '';
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private applicantService: ApplicantService
-  ) {}
-
-
-
-  ngOnInit(): void {
-    this.appliedJobId = this.route.snapshot.paramMap.get('id') || '';
-    
-    this.applicantService.getApplicants().subscribe((applicants) => {
-      console.log('Updated Applicants:', applicants);
-    });
-  
+  ) {
     this.applicantForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
+      phone: ['', [Validators.pattern(/^[0-9]{10,15}$/)]],
       techStack: this.fb.array([this.fb.control('')]),
-      yearsOfExperience: [''],
+      yearsOfExperience: ['', [Validators.min(0), Validators.max(50)]],
       address: [''],
-      city: ['']
+      city: [''],
+      resume: [null]
     });
   }
-  
 
+  ngOnInit(): void {}
 
   get techStack(): FormArray {
     return this.applicantForm.get('techStack') as FormArray;
@@ -62,37 +47,55 @@ export class ApplicantFormComponent implements OnInit {
   }
 
   removeTechStack(index: number): void {
-    this.techStack.removeAt(index);
+    if (this.techStack.length > 1) {
+      this.techStack.removeAt(index);
+    }
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.applicantForm.patchValue({ resume: file });
     }
   }
 
   onSubmit(): void {
+    this.submitted = true;
+    this.successMessage = '';
+    this.errorMessage = '';
+
     if (this.applicantForm.invalid) {
-      this.applicantForm.markAllAsTouched();
       return;
     }
 
-    const applicant: Applicant = {
-      ...this.applicantForm.value,
-      appliedJobId: this.appliedJobId,
-      id: '', // will be assigned in service
-      status: '' // will be set in service
-    };
+    const formData = new FormData();
+    const formValue = this.applicantForm.value;
 
-    this.applicantService.addApplicant(applicant);
+    // Append all form fields to FormData
+    Object.keys(formValue).forEach(key => {
+      if (key === 'techStack') {
+        formData.append(key, JSON.stringify(formValue[key]));
+      } else if (key === 'resume' && this.selectedFile) {
+        formData.append('resume', this.selectedFile, this.selectedFile.name);
+      } else {
+        formData.append(key, formValue[key]);
+      }
+    });
 
-    console.log('Applicant added:', applicant);
-
-    // reset form
-    this.applicantForm.reset();
-    this.techStack.clear();
-    this.techStack.push(this.fb.control(''));
+    this.applicantService.addApplicant(formData).subscribe({
+      next: (response) => {
+        this.successMessage = 'Application submitted successfully!';
+        this.applicantForm.reset();
+        this.techStack.clear();
+        this.addTechStack();
+        this.selectedFile = null;
+        this.submitted = false;
+      },
+      error: (error) => {
+        this.errorMessage = error.error?.message || 'Error submitting application. Please try again.';
+        console.error('Error submitting application:', error);
+      }
+    });
   }
 }
-
