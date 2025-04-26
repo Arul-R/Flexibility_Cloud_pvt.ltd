@@ -19,9 +19,15 @@ export class ApplicantService {
   //   return this.http.get<Applicant[]>(this.apiUrl);
   // }
 
+  // getApplicants(): Observable<Applicant[]> {
+  //   return this.http.get<Applicant[]>(this.apiUrl).pipe(
+  //     map(response => Array.isArray(response) ? response : [response]) // Ensure array
+  //   );
+  // }
+
   getApplicants(): Observable<Applicant[]> {
-    return this.http.get<Applicant[]>(this.apiUrl).pipe(
-      map(response => Array.isArray(response) ? response : [response]) // Ensure array
+    return this.http.get<{success: boolean, data: Applicant[]}>(this.apiUrl).pipe(
+      map(response => response.data) // Extract the data array from the response
     );
   }
 
