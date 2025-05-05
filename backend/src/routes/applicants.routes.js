@@ -22,6 +22,7 @@ router.post('/', upload.single('resume'), applicantController.createApplicant);
 router.get('/', applicantController.getApplicants);
 router.get('/:id', applicantController.getApplicantById);
 router.patch('/:id', applicantController.updateApplicant);
+// router.put('/:id', applicantController.updateApplicant); //sfsffsdfwefewfwef
 router.delete('/:id', applicantController.deleteApplicant);
 router.get('/:id/resume', applicantController.downloadResume);
 

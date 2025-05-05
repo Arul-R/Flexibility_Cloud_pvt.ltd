@@ -46,31 +46,12 @@ export class ViewApplicantsComponent implements OnInit {
     });
   }
 
-  // onSearch(): void {
-  //   if (!this.searchQuery.trim()) {
-  //     this.filteredApplicants = this.applicants;
-  //     return;
-  //   }
-
-  //   const lowerQuery = this.searchQuery.toLowerCase();
-  //   this.filteredApplicants = this.applicants.filter(applicant => 
-  //     applicant.firstName.toLowerCase().includes(lowerQuery) ||
-  //     applicant.lastName.toLowerCase().includes(lowerQuery) ||
-  //     applicant.email.toLowerCase().includes(lowerQuery) ||
-  //     applicant.phone?.toLowerCase().includes(lowerQuery) ||
-  //     applicant.city?.toLowerCase().includes(lowerQuery) ||
-  //     applicant.address?.toLowerCase().includes(lowerQuery) ||
-  //     applicant.techStack?.some(tech => 
-  //       tech.toLowerCase().includes(lowerQuery)
-  //     )
-  //   );
-  // }
 
   updateApplicantStatus(applicant: Applicant, status: 'submitted' | 'rejected' | 'accepted'): void {
     const updatedApplicant = { ...applicant, status };
-    this.applicantService.updateApplicant(applicant.id!, updatedApplicant).subscribe({
+    this.applicantService.updateApplicant(applicant._id!, updatedApplicant).subscribe({
       next: () => {
-        const index = this.applicants.findIndex(a => a.id === applicant.id);
+        const index = this.applicants.findIndex(a => a._id === applicant._id);
         if (index !== -1) {
           this.applicants[index] = updatedApplicant;
           this.filteredApplicants = [...this.filteredApplicants];
@@ -83,12 +64,12 @@ export class ViewApplicantsComponent implements OnInit {
     });
   }
 
-  deleteApplicant(id: string): void {
+  deleteApplicant(_id: string): void {
     if (confirm('Are you sure you want to delete this applicant?')) {
-      this.applicantService.deleteApplicant(id).subscribe({
+      this.applicantService.deleteApplicant(_id).subscribe({
         next: () => {
-          this.applicants = this.applicants.filter(a => a.id !== id);
-          this.filteredApplicants = this.filteredApplicants.filter(a => a.id !== id);
+          this.applicants = this.applicants.filter(a => a._id !== _id);
+          this.filteredApplicants = this.filteredApplicants.filter(a => a._id !== _id);
         },
         error: (err) => {
           console.error('Error deleting applicant:', err);

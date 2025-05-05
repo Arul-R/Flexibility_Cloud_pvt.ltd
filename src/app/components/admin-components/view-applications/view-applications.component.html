@@ -1,37 +1,75 @@
 <div class="p-4">
-    <h2 class="text-xl font-bold mb-4">Applicants</h2>
-  
-    <!-- <input
-      type="text"
-      placeholder="Search applicants..."
-      [(ngModel)]="searchQuery"
-      (input)="onSearch()"
-      class="border p-2 w-full mb-4"
-    /> -->
-  
-    <table class="w-full border">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="p-2 text-left">Name</th>
-          <th class="p-2 text-left">Email</th>
-          <th class="p-2 text-left">Phone</th>
-          <th class="p-2 text-left">City</th>
-          <th class="p-2 text-left">Status</th>
-          <th class="p-2 text-left">JobId</th>
+  <h2 class="text-xl font-bold mb-4">Applicants</h2>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let applicant of filteredApplicants">
-          <td class="p-2">{{ applicant.firstName }} {{ applicant.lastName }}</td>
-          <td class="p-2">{{ applicant.email }}</td>
-          <td class="p-2">{{ applicant.phone }}</td>
-          <td class="p-2">{{ applicant.city }}</td>
-          <td class="p-2">{{ applicant.status }}</td>
-          <td class="p-2">{{ applicant.appliedJobId}}</td>
-
-        </tr>
-      </tbody>
-    </table>
+  <!-- Error message display -->
+  <div *ngIf="error" class="mb-4 p-2 bg-red-100 text-red-700 rounded">
+    {{ error }}
+    <button (click)="error = null" class="float-right font-bold">&times;</button>
   </div>
-  
+
+  <table class="w-full border">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2 text-left">Name</th>
+        <th class="p-2 text-left">Email</th>
+        <th class="p-2 text-left">Phone</th>
+        <th class="p-2 text-left">City</th>
+        <th class="p-2 text-left">Status</th>
+        <th class="p-2 text-left">JobId</th>
+        <th class="p-2 text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let applicant of filteredApplicants" class="hover:bg-gray-50">
+        <td class="p-2">{{ applicant.firstName }} {{ applicant.lastName }}</td>
+        <td class="p-2">{{ applicant.email }}</td>
+        <td class="p-2">{{ applicant.phone }}</td>
+        <td class="p-2">{{ applicant.city }}</td>
+        <td class="p-2">
+          <span [ngClass]="{
+            'text-green-600 font-semibold': applicant.status === 'accepted',
+            'text-red-600 font-semibold': applicant.status === 'rejected',
+            'text-blue-600': applicant.status === 'submitted'
+          }">
+            {{ applicant.status | titlecase }}
+          </span>
+        </td>
+        <td class="p-2">{{ applicant.appliedJobId }}</td>
+        <td class="p-2 flex space-x-2">
+          <!-- Accept Button -->
+          <button 
+            *ngIf="applicant.status !== 'accepted'"
+            (click)="updateApplicantStatus(applicant, 'accepted')"
+            class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition"
+            [attr.aria-label]="'Accept ' + applicant.firstName"
+            title="Accept application"
+          >
+            Accept
+          </button>
+          
+          <!-- Reject Button -->
+          <button 
+            *ngIf="applicant.status !== 'rejected'"
+            (click)="updateApplicantStatus(applicant, 'rejected')"
+            class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+            [attr.aria-label]="'Reject ' + applicant.firstName"
+            title="Reject application"
+          >
+            Reject
+          </button>
+          
+          <!-- Delete Button -->
+          <button 
+            (click)="deleteApplicant(applicant._id!)"
+            class="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition"
+            [attr.aria-label]="'Delete ' + applicant.firstName"
+            title="Delete application"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

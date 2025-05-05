@@ -1,5 +1,5 @@
 export interface Applicant {
-    id?: string;
+    _id?: string;
     appliedJobId?: string;
     firstName: string;
     lastName: string;
